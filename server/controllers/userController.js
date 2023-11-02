@@ -1,3 +1,4 @@
+const ApiError = require('../error/ApiError')
 class UserController { // так лучше групирует 
     async registration(req, res) {
 
@@ -5,8 +6,12 @@ class UserController { // так лучше групирует
     async login(req, res) {
 
     }
-    async auth(req, res) {
-        res.json('adasdasdasdas')
+    async auth(req, res, next) {
+        const {id} = req.query
+        if(!id){
+            return next(ApiError.forbiden('no id!'))
+        }
+        res.json(id)
     }
 }
 
