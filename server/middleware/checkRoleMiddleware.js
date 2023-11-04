@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken')
+
 module.exports.checkRoleMiddleware = (role) => {
     return function (req, res, next){ 
     if(req.method === "OPTIONS"){
