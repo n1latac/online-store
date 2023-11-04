@@ -12,7 +12,7 @@ const generateJWT = (id, email, role) => {
 }
 
 
-class UserController { // так лучше групирует 
+class UserController { // класс лучше групирует 
     async registration(req, res, next) {
         const {email, password, role} = req.body
         if(!email || !password){
@@ -42,7 +42,9 @@ class UserController { // так лучше групирует
         return res.json({token})
     }
     async auth(req, res, next) {
-        
+        const {id, email, role} = req.user
+        const token = generateJWT(id, email, role)
+        return res.json({token})
     }
 }
 
